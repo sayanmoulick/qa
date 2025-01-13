@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/sayan/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+3961772274.index
+717946052.index
+3307377354.index
+2949782993.index
+3010304405.index
+829099304.index

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<listeners>
+<listener class-name="listeners.ScreenShotListener"/>
+<listener class-name="listeners.ExtentReportListener"/>
+</listeners>
+	<test thread-count="5" name="BaseTest">
+		<classes>
+			<class name="uiElements.BaseTest" />
+		</classes>
+	</test> <!--
+	Test -->
+	
+	<test thread-count="5" name="BrokenImagesTest">
+		<classes>
+			<class name="uiElements.BrokenImagesTest" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="BrokenLinksTest">
+		<classes>
+			<class name="uiElements.BrokenLinks" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="ContextMenuTest">
+		<classes>
+			<class name="uiElements.ContextMenu" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="DragAndDropTest">
+		<classes>
+			<class name="uiElements.DragAndDrop" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="DropDownTest">
+		<classes>
+			<class name="uiElements.DropDown" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="DynamicContentTest">
+		<classes>
+			<class name="uiElements.DynamicContent" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="HoverTest">
+		<classes>
+			<class name="uiElements.Hover" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="InfiniteScrollTest">
+		<classes>
+			<class name="uiElements.InfiniteScroll" />
+		</classes>
+	</test> <!--
+	Test -->
+
+
+	<test thread-count="5" name="KeyPressTest">
+		<classes>
+			<class name="uiElements.KeyPress" />
+		</classes>
+	</test> <!--
+	Test -->
+
+
+	<test thread-count="5" name="PaginationTest">
+		<classes>
+			<class name="uiElements.Pagination" />
+		</classes>
+	</test> <!--
+	Test -->
+
+
+	<!-- <test thread-count="5" name="Test">
+    <classes>
+      <class name="uiElements.RadioButton"/>
+    </classes>
+  </test>  Test -->
+
+	<test thread-count="5" name="ScrollIntoViewsTest">
+		<classes>
+			<class name="uiElements.ScrollIntoViews" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<!-- <test thread-count="5" name="Test">
+    <classes>
+      <class name="uiElements.WaitsTest"/>
+    </classes>
+  </test> Test -->
+</suite> <!--
+Suite -->

@@ -1,0 +1,25 @@
+1726902585047	Delete element
+1726902641535	Move compilation unit
+1726902890360	Delete element
+1726909848874	Move compilation units
+1726909858631	Move compilation unit
+1726918574441	Rename type 'JuiceShopTests'
+1726919537010	Copy file
+1726919620984	Delete element
+1726924973399	Delete element
+1726933304795	Copy file
+1726933339032	Rename resource 'testng.xml'
+1726933343574	Copy file
+1726933359232	Rename resource 'testng.xml'
+1726933375151	Copy file
+1726933396839	Rename resource 'testng.xml'
+1726933401503	Copy file
+1726933431796	Rename resource 'testng.xml'
+1726934049069	Rename type 'JuiceShopLoginTests'
+1726934061166	Rename type 'JuiceShopPlaceOrder'
+1726934072221	Rename type 'JuiceShopRegistrationTests'
+1726934965264	Rename type 'PlaceOrder'
+1726935351678	Rename type 'CartAddRemoveTest'
+1726936296691	Rename type 'PaymentFailedTests'
+1726936847783	Rename resource 'testng-sanity.xml'
+1726939971286	Rename type 'CartTest'

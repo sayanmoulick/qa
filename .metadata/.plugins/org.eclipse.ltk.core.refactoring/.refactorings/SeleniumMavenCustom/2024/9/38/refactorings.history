@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;standAloneTest&apos; to &apos;constants&apos;&#x0A;- Original project: &apos;SeleniumMavenCustom&apos;&#x0A;- Original element: &apos;SeleniumMavenCustom/src/standAloneTest&apos;&#x0A;- Renamed element: &apos;SeleniumMavenCustom/src/constants&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;standAloneTest&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;standAloneTest" name="constants" qualified="false" references="true" stamp="1726753784578" textual="false" version="1.0"/>
+</session>

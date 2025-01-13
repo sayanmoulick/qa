@@ -1,0 +1,97 @@
+package base;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import constants.FrameworkConstants;
+
+public class Webdriver extends BasePage {
+	public Webdriver(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
+
+//	protected static WebDriver driver;
+
+	public static WebDriver initilizeDriver() {
+		
+		URL = readConfigurationFile("URL");
+		if(URL.trim().length() > 0){
+			String browserName = readConfigurationFile("BrowserName");
+				if (browserName.trim().equalsIgnoreCase("firefox")) {
+					System.setProperty(FrameworkConstants.FIREFOX_DRIVER_KEY,FrameworkConstants.FIREFOX_DRIVER_PATH);
+					driver = new FirefoxDriver();
+					driver.manage().window().maximize();
+				} else if (browserName.trim().equalsIgnoreCase("chrome")) {
+					ChromeOptions options = new ChromeOptions();
+					System.setProperty(FrameworkConstants.CHROME_DRIVER_KEY,FrameworkConstants.CHROME_DRIVER_PATH);
+					driver = new ChromeDriver(options);
+					driver.manage().window().maximize();
+					/*
+					driver.manage().window().setSize(new Dimension(1440,900)); // customized
+					driver.manage().window().fullscreen(); //full screen
+					*/
+				} else if (browserName.trim().equalsIgnoreCase("edge")) {
+					System.setProperty(FrameworkConstants.EDGE_DRIVER_KEY, FrameworkConstants.EDGE_DRIVER_PATH);
+					driver = new EdgeDriver();
+					driver.manage().window().maximize();
+				} else {
+					System.out.println("Invalid BrowserName");
+					throw new IllegalStateException("Failed to invoke WebBrowser.Invalid BrowserName..");
+				}
+			}
+		return driver;
+		
+		}
+
+//
+//		driver.get("https://rahulshettyacademy.com");
+//
+//		System.out.println(driver.getTitle());
+//
+//		System.out.println(driver.getCurrentUrl());
+
+//		ChromeOptions options = new ChromeOptions();
+//
+//		Proxy proxy = new Proxy();
+//
+//		proxy.setHttpProxy("ipaddress:4444");
+//
+//		options.setCapability("proxy", proxy);
+//
+//		Map<String, Object> prefs = new HashMap<String, Object>();
+//
+//
+//
+//		prefs.put("download.default_directory", "/directory/path");
+//
+//
+//
+//		options.setExperimentalOption("prefs", prefs);
+
+	// FirefoxOptions options1 = new FirefoxOptions();
+
+	// options1.setAcceptInsecureCerts(true);
+
+	// EdgeOptions options2 = new EdgeOptions();
+
+//		options.setAcceptInsecureCerts(true);
+//
+//		System.setProperty("webdriver.chrome.driver", "/Users/rahulshetty/Documents/chromedriver");
+//
+//
+//
+//		driver = new ChromeDriver(options);
+//
+//		driver.get("https://expired.badssl.com/");
+//
+//		System.out.println(driver.getTitle());
+
+//		driver.close();
+
+	// driver.quit();
+
+}

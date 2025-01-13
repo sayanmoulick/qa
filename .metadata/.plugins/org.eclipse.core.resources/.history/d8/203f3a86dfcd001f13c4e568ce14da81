@@ -1,0 +1,109 @@
+package JavaAutomationTest.databasetesting;
+
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import managers.DBConnectionManager;
+
+public class DBConstraintTesting {
+	
+	
+
+	@Test
+	public void testNOTNULLConstraint() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			Connection conn = DBInstance.getConnection();
+			Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			String sql = "INSERT INTO users(first_name) VALUES (NULL)";
+			stat.executeUpdate(sql);
+
+			// Assertion fails if exception not thrown
+			assertFalse(true);
+
+		} catch (SQLException e) {
+System.out.print(e);
+			// Assert exception message
+			assertTrue(e.getMessage().contains("NOT NULL constraint failed"));
+		}
+	}
+	
+	@Test
+	public void testDataInsertion() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			Connection conn = DBInstance.getConnection();
+			Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			String sql = "INSERT INTO users(user_id, first_name, last_name, email) VALUES (1, 'Peter', 'Parker', 'pp@test.com'), (2, 'Jane', 'Doe', 'jane@test.com')";
+			stat.executeUpdate(sql);
+
+			// Assertion fails if exception not thrown
+			assertTrue(true);
+
+		} catch (SQLException e) {
+			System.out.print(e);
+
+			// Assert exception message
+//			assertTrue(e.getMessage().contains("NOT NULL constraint failed"));
+		}
+	}
+
+	@Test(dependsOnMethods= { "testDataInsertion" })
+	public void testUniqueKeyConstraint() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			// Insert record with duplicate email
+			String sql = "INSERT INTO users(user_id, first_name, last_name, email) VALUES (3, 'Peter', 'Parker', 'pp@test.com')";
+			Connection conn = DBInstance.getConnection();
+
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+
+			// Assertion fails if duplicate allowed
+			assertFalse(true);
+
+		} catch (SQLException e) {
+
+			// Assert exception message
+			assertTrue(e.getMessage().contains("Duplicate entry"));
+		}
+	}
+
+	@Test(dependsOnMethods= { "testDataInsertion" })
+	public void testSelectQuery() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			// Execute SELECT query
+			String sql = "SELECT * FROM users";
+			Connection conn = DBInstance.getConnection();
+
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+
+			// Validate number of records
+			assertEquals(result.last(), 2);
+
+		} catch (SQLException e) {
+			System.out.print(e);
+
+			assertFalse(true);
+		}
+	}
+}

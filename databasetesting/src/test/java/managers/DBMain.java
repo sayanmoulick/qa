@@ -1,0 +1,142 @@
+package managers;
+
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/*
+ * CREATE TABLE `db_autofrat`.`products` (
+ * `ID` INT NOT NULL AUTO_INCREMENT,
+ * `Product` VARCHAR(45) NULL,
+ * PRIMARY KEY (`ID`));
+ */
+
+public class DBMain {
+	public static void main(String[] args) throws SQLException {
+
+		ArrayList<String> obj = new ArrayList<String>();
+		obj.add("Mobile");
+		obj.add("Tablet");
+		System.out.println(obj);
+
+		String q = "Select * from products";
+		String[][] result = FetchDataFromDB(q);
+
+		System.out.println(result);
+
+	}
+
+	@Test
+	public void testNOTNULLConstraint() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			Connection conn = DBInstance.getConnection();
+			Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			String sql = "INSERT INTO users(first_name) VALUES (NULL)";
+			stat.executeUpdate(sql);
+
+			// Assertion fails if exception not thrown
+			AssertJUnit.assertFalse(true);
+
+		} catch (SQLException e) {
+
+			// Assert exception message
+			AssertJUnit.assertTrue(e.getMessage().contains("NOT NULL constraint failed"));
+		}
+	}
+
+	@Test
+	public void testUniqueKeyConstraint() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			// Insert record with duplicate email
+			String sql = "INSERT INTO users(first_name, last_name, email) VALUES (‘Peter‘, ‘Parker‘, ‘pp@test.com‘)";
+			Connection conn = DBInstance.getConnection();
+
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+
+			// Assertion fails if duplicate allowed
+			AssertJUnit.assertFalse(true);
+
+		} catch (SQLException e) {
+
+			// Assert exception message
+			AssertJUnit.assertTrue(e.getMessage().contains("Duplicate entry"));
+		}
+	}
+
+	@Test
+	public void testSelectQuery() {
+
+		try {
+			String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+
+			DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+			// Execute SELECT query
+			String sql = "SELECT * FROM users";
+			Connection conn = DBInstance.getConnection();
+
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+
+			// Validate number of records
+			AssertJUnit.assertEquals(result.last(), 2);
+
+		} catch (SQLException e) {
+			AssertJUnit.assertFalse(true);
+		}
+	}
+
+	public static String[][] FetchDataFromDB(String query) throws SQLException {
+
+		String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+		DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+		Connection conn = DBInstance.getConnection();
+		Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = stat.executeQuery(query);
+
+//		Statement stat = conn.prepareStatement(query,
+//                ResultSet.TYPE_SCROLL_SENSITIVE, 
+//            ResultSet.CONCUR_UPDATABLE);
+//		ResultSet rs = stat.executeQuery(query);
+
+		// To get total number of Column returned
+		int clmCount = rs.getMetaData().getColumnCount();
+
+		// To get total number of rows returned
+		rs.last();// this will move the rs to last row
+		int rowcount = rs.getRow(); // this will give the index of last row
+		rs.beforeFirst(); // this will bring it back to first record
+		System.out.println(rowcount);
+		// Create a Object
+		String[][] result = new String[rowcount][clmCount];
+		int i = 0;
+//		String[] result = new String[rowcount];
+		while (rs.next()) {
+//			result[i] = rs.getString("Product");
+
+			for (int j = 0; j < clmCount; j++) {
+				result[i][j] = rs.getString(j + 1);
+			}
+
+			i = i + 1;
+		}
+
+		return result;
+
+	}
+}

@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:00:00 +0530] "GET /TownPlanning/UserData?username=test HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:00:30 +0530] "GET /TownPlanning/TestConnection.html HTTP/1.1" 200 1378
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:00:32 +0530] "GET /favicon.ico HTTP/1.1" 404 720
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:01:25 +0530] "GET /TownPlanning/TestConnection.html HTTP/1.1" 200 1277
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:01:26 +0530] "GET /favicon.ico HTTP/1.1" 404 720
+0:0:0:0:0:0:0:1 - - [05/Feb/2020:00:01:27 +0530] "GET /TownPlanning/UserData?username=test HTTP/1.1" 200 -

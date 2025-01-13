@@ -1,0 +1,79 @@
+package test;
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import pages.LoginPage;
+import pages.ProductPage;
+import pages.CheckoutPage;
+import org.testng.Assert;
+
+public class UserFlow implements Runnable {
+
+    private WebDriver driver;
+    private String username;
+    private String password;
+
+    public UserFlow(String username, String password) {
+        this.username = username;
+        this.password = password;
+
+        // Initialize WebDriver
+        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless"); // To run tests without opening a browser window
+        this.driver = new ChromeDriver(options);
+    }
+
+    @Override
+    public void run() {
+        try {
+            login();
+            /*
+            addItemToCart();
+            proceedToCheckout();
+            makePayment();
+            verifyInventory();
+            */
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.quit();
+        }
+    }
+
+    private void login() {
+        driver.get("https://www.paymentgateway.com/login");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(username, password);
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed for " + username);
+    }
+
+    private void addItemToCart() {
+        driver.get("https://www.paymentgateway.com/products");
+        ProductPage productPage = new ProductPage(driver);
+        productPage.addProductToCart();
+    }
+
+    private void proceedToCheckout() {
+        ProductPage productPage = new ProductPage(driver);
+        productPage.goToCart();
+
+        driver.get("https://www.paymentgateway.com/checkout");
+    }
+
+    private void makePayment() {
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.enterPaymentDetails("4111111111111111", "12/24", "123");
+        checkoutPage.clickPayButton();
+
+        Assert.assertTrue(checkoutPage.isPaymentSuccessful(), "Payment failed for " + username);
+    }
+
+    private void verifyInventory() {
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        String stockStatus = checkoutPage.getStockStatus();
+        Assert.assertTrue(stockStatus.equals("Out of Stock") || Integer.parseInt(stockStatus) >= 0, "Inventory is incorrect after purchase for " + username);
+    }
+}

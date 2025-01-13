@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="RefactoringWizard.preview">
+		<item key="width" value="611"/>
+		<item key="height" value="400"/>
+	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item key="deleteSubPackages" value="false"/>
+		<item key="moveWizard.updateQualifiedNames" value="false"/>
+		<item key="patterns" value="*"/>
+	</section>
+	<section name="InferTypeArguments">
+		<item key="assumeCloneReturnsSameType" value="true"/>
+		<item key="leaveUnconstrainedRaw" value="true"/>
+	</section>
+	<section name="RefactoringWizard.Convert from JUnit">
+		<item key="width" value="707"/>
+		<item key="height" value="497"/>
+	</section>
+	<section name="ConvertFromJUnitWizard.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="304"/>
+		<item key="DIALOG_Y_ORIGIN" value="0"/>
+		<item key="DIALOG_WIDTH" value="713"/>
+		<item key="DIALOG_HEIGHT" value="720"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+	<section name="RefactoringStatusDialog">
+		<item key="DIALOG_WIDTH" value="806"/>
+		<item key="DIALOG_HEIGHT" value="491"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+</section>

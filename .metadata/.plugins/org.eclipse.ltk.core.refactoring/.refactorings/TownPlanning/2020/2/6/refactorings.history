@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;servletClasses.InsertData&apos; to &apos;UserData&apos;&#x0A;- Original project: &apos;TownPlanning&apos;&#x0A;- Original element: &apos;servletClasses.InsertData&apos;&#x0A;- Renamed element: &apos;servletClasses.UserData&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;InsertData&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;servletClasses{InsertData.java[InsertData" matchStrategy="1" name="UserData" qualified="false" references="true" similarDeclarations="false" stamp="1580837368667" textual="false" version="1.0"/>
+</session>

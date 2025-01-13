@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;Sort&apos; to &apos;sort&apos;&#x0A;- Original project: &apos;Sort&apos;&#x0A;- Original element: &apos;Sort/src/Sort&apos;&#x0A;- Renamed element: &apos;Sort/src/sort&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;Sort&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;Sort" name="sort" qualified="false" references="true" stamp="1580920817496" textual="false" version="1.0"/>
+</session>

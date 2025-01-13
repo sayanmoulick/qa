@@ -1,0 +1,72 @@
+package managers;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/*
+ * CREATE TABLE `db_autofrat`.`products` (
+ * `ID` INT NOT NULL AUTO_INCREMENT,
+ * `Product` VARCHAR(45) NULL,
+ * PRIMARY KEY (`ID`));
+ */
+
+public class DBMain {
+public static void main(String[] args) throws SQLException {
+		
+		ArrayList<String> obj = new ArrayList<String>();
+		obj.add("Mobile");
+		obj.add("Tablet");
+		System.out.println(obj);
+		
+	
+		String q = "Select * from products";
+		String [] result  = FetchDataFromDB(q);
+
+		System.out.println(result);
+		
+	}
+
+	public static String[] FetchDataFromDB(String query) throws SQLException {
+
+		String url = "jdbc:mysql://localhost:3306/db_autofrat?user=sayan&password=P@ssw0rd";
+		DBConnectionManager DBInstance = DBConnectionManager.getInstance(url);
+		Connection conn = DBInstance.getConnection();
+		Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, 
+	            ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = stat.executeQuery(query);
+		
+//		Statement stat = conn.prepareStatement(query,
+//                ResultSet.TYPE_SCROLL_SENSITIVE, 
+//            ResultSet.CONCUR_UPDATABLE);
+//		ResultSet rs = stat.executeQuery(query);
+
+		//To get total number of Column returned
+		int clmCount = rs.getMetaData().getColumnCount();
+
+		//To get total number of rows returned
+		rs.last();// this will move the rs to last row
+		int rowcount = rs.getRow(); // this will give the index of last row
+		rs.beforeFirst(); // this will bring it back to first record
+		System.out.println(rowcount);
+		//Create a Object 
+//		String[][] result = new String[rowcount][clmCount];
+		int i=0;
+		String[] result = new String[rowcount];
+		while(rs.next()) {
+			result[i] = rs.getString("Product");
+/*
+			for(int j=0;j<clmCount;j++) {
+				result[i][j]=rs.getString(j+1);
+			}
+			
+			*/
+			i=i+1;
+		}
+
+		return result;
+
+	}
+}
